@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import Home from "./src/screens/Home";
+import Search from "./src/components/Search";
+import Products from "./src/screens/Products";
+
+import { useFonts } from "expo-font";
+import ProductDetail from "./src/screens/ProductDetail";
+import RootNavigation from "./src/navigation/RootNavigation";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Dancing: require("./assets/Fonts/DancingScript-Regular.ttf"),
+    Pacifico: require("./assets/Fonts/Pacifico-Regular.ttf"),
+  });
+
+  if (fontsLoaded === false) {
+    return;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <RootNavigation />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
+
