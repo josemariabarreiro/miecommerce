@@ -1,16 +1,16 @@
 import { View, Text, SafeAreaView, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import Header from "../components/Header";
-import Categories from "../components/Categories";
-import { useWindowDimensions } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { categories } from "../data/Categories";
 import CategoryItem from "../components/CategoryItem";
 import { colors } from "../theme/colors";
+import { useSelector } from "react-redux";
 
 const Home = ({ navigation }) => {
+  const categories = useSelector((state) => state.homeSlice.allCategories);
+
+ 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ marginBottom: 40 }}>
       <Header title="Categorías" navigation={navigation} />
       <View style={styles.container}>
         <FlatList
@@ -27,7 +27,7 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.heavyBlue,
+    backgroundColor: colors.airsuperiorityblue,
     paddingTop: 20,
   },
 });

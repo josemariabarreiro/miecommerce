@@ -5,9 +5,7 @@ import { colors } from "../theme/colors";
 const Header = ({ title, navigation }) => {
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => navigation.goBack()}>
-        <Text> Ir Atrás </Text>
-      </Pressable>
+      <Pressable onPress={() => navigation.goBack()}></Pressable>
       <Text style={styles.headerText}> {title} </Text>
     </View>
   );
@@ -26,7 +24,8 @@ const styles = StyleSheet.create({
     fontSize: 35,
 
     color: colors.heavyBlue,
-    fontFamily: "Dancing",
+    fontFamily: "Pacifico",
+    
   },
 });
 
