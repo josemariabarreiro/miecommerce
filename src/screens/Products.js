@@ -7,6 +7,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { colors } from "../theme/colors";
 import { useSelector } from "react-redux";
 
+import { useGetProductsQuery } from "../services/ecApi";
+
 const Products = ({ route, navigation }) => {
   const [categoryProd, setCategoryProd] = useState([]);
   const [text, setText] = useState(null);
@@ -14,17 +16,16 @@ const Products = ({ route, navigation }) => {
 
   const products = useSelector((state) => state.homeSlice.allProducts);
 
+  const { data, isLoading, isError } = useGetProductsQuery();
+
+  // console.log(data);
+
   const productsFilterByCategory = useSelector(
     (state) => state.homeSlice.productsFilterByCategory
   );
 
-  // console.log(productsFilterByCategory);
-
   useEffect(() => {
-    const categoryProducts = products.filter((el) => el.category === item);
-
-    console.log(categoryProducts);
-    setCategoryProd(categoryProducts);
+    setCategoryProd(productsFilterByCategory);
 
     if (text) {
       const titleProduct = products.filter(
@@ -37,12 +38,7 @@ const Products = ({ route, navigation }) => {
   return (
     <SafeAreaView>
       <Header title={item} navigation={navigation} />
-      <Pressable
-        style={{ marginLeft: 15, marginBottom: 10 }}
-        onPress={() => navigation.goBack()}
-      >
-        <AntDesign name="caretleft" size={24} color={colors.mediumBlue} />
-      </Pressable>
+
       <Search text={text} setText={setText} />
 
       <FlatList
